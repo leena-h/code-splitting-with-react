@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Code Splitting in React
+
+This code repository demonstrates how to use `React.lazy` to dynamically import a component.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

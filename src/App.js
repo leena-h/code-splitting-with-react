@@ -1,22 +1,26 @@
-import logo from './logo.svg';
+import React, { lazy, Suspense } from 'react';
+import { useState } from 'react';
+
+
 import './App.css';
+import logo from './logo.svg'
 
 function App() {
+  const [route, setRoute] = useState('page1')
+ 
+  const Page1 = lazy(() => import('./components/Page1'));
+  const Page2 = lazy(() => import('./components/Page2'));
+  const Page3 = lazy(() => import('./components/Page3'));
+  
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Suspense fallback={<div>Loading...</div>}>
+          {route === 'page1' && <Page1 onRouteChange={setRoute} />}
+          {route === 'page2' && <Page2 onRouteChange={setRoute} />}
+          {route === 'page3' && <Page3 onRouteChange={setRoute} />}
+        </Suspense>
       </header>
     </div>
   );
